@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Lab_03.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a class="btn btn-success" href="/Book/CreateBook" title="Create Book">Create Book</a>
+</p>
+<table class="table">
+    <tr>
+        <th scope="col" class="text-center">STT</th>
+        <th scope="col" class="text-center">Tên tác giả</th>
+        <th scope="col" class="text-center">Tên sách</th>
+        <th scope="col" class="text-center">Mô tả</th>
+        <th scope="col" class="text-center">Hình ảnh</th>
+        <th scope="col" class="text-center">Giá</th>
+        <th scope="col" class="text-center">Tác Vụ</th>
+    </tr>
+    @{
+        int i = 0;
+
+    }
+    @foreach (var item in Model)
+    {
+        i++;
+        <tr>
+
+            <th scope="row" class="text-center" style="vertical-align:middle">@i</th>
+            <td class="text-center" style="vertical-align:middle">
+                @item.Author
+        </td>
+        <td class="text-center " style="vertical-align:middle">
+            @item.Title
+    </td>
+    <td class="text-center " style="vertical-align:middle">
+        @item.Description
+    </td>
+    <td class="text-center " style="vertical-align:middle">
+        <img src="@item.ImageCover" width="50" />
+    </td>
+    <td class="text-center" style="vertical-align:middle">
+        @item.Price
+    </td>
+    <td class="text-center" style="vertical-align:middle">
+        <a class="btn btn-success" href="/Book/EditBook/@item.Id">Sửa</a>
+        <a class="btn btn-danger" href="/Book/Delete/@item.Id" title="Delete Book">Xoá</a>
+      
+        <a class="btn btn-default" href="/Book/Buy/@item.Id" title="Buy Book" onclick="return confirm('Bạn có chắc chắn muốn mua ?')">Buy</a>
+    </td>
+</tr>
+}
+
+</table>
